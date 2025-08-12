@@ -5,35 +5,42 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
 
-  <!-- favicon e preload hero -->
+  <!-- favicon + preload hero -->
   <link rel="icon" href="/nemo-landing/public/nemo-logo.png" />
-  <link rel="preload" as="image" href="/nemo-landing/public/hero-summer.jpg" imagesrcset="/nemo-landing/public/hero-summer.jpg 1920w" />
+  <link rel="preload" as="image" href="/nemo-landing/public/hero-summer.jpg" />
 
   <style>
     :root { --teal:#14b8a6; --ink:#0f172a; --muted:#64748b; --bg1:#ecfeff; --bg2:#f0fdf4; }
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg1),var(--bg2));}
     .container{max-width:1100px;margin:0 auto;padding:24px}
+
     header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.7);border-bottom:1px solid #e2e8f0;z-index:10}
     header .row{display:flex;align-items:center;justify-content:space-between}
+
     .btn{display:inline-block;padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:600}
     .btn-primary{background:var(--teal);color:#fff}
     .btn-outline{border:1px solid #cbd5e1;color:var(--ink);background:#fff}
+
     .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid #cbd5e1;border-radius:999px;background:rgba(255,255,255,.7);font-size:12px;color:#0f766e;text-transform:uppercase;letter-spacing:.08em}
     h1{font-size:40px;line-height:1.1;margin:16px 0}
+
     .grid{display:grid;gap:24px}
     @media(min-width:900px){.grid-2{grid-template-columns:1.1fr .9fr} .grid-3{grid-template-columns:repeat(3,1fr)}}
+
     .card{border:1px solid #e2e8f0;border-radius:20px;background:rgba(255,255,255,.7);padding:24px}
     .muted{color:var(--muted)}
     .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
     .kpis .kpi{padding:16px;border-radius:16px;border:1px solid #e2e8f0;background:rgba(255,255,255,.7)}
     .kpis .val{font-size:28px;font-weight:800;color:#0f766e;margin-top:4px}
+
     .logos{overflow:hidden;border:1px solid #e2e8f0;border-radius:20px;background:rgba(255,255,255,.7)}
     .marquee{display:flex;gap:40px;align-items:center;animation:marquee 30s linear infinite;padding:16px}
     .marquee img{height:36px;opacity:.8;transition:opacity .2s}
     .marquee img:hover{opacity:1}
     @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     @media (prefers-reduced-motion: reduce){ .marquee{animation:none} }
+
     footer{border-top:1px solid #e2e8f0;margin-top:24px}
     input,textarea{width:100%;padding:12px 14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}
     .progress{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}
@@ -44,12 +51,14 @@
     .logo-nemo { height:72px; }
     @media (max-width:640px){ .logo-nemo { height:48px; } }
 
-    /* HERO con grafica estiva: path per GitHub Pages sotto /nemo-landing */
+    /* HERO con grafica estiva (fallback + immagine) */
     .hero{
       position:relative;
-      background:url('/nemo-landing/public/hero-summer.jpg') center/cover no-repeat;
+      background:
+        linear-gradient(180deg,#e6fffb,#f0fdf4),
+        url('/nemo-landing/public/hero-summer.jpg') center/cover no-repeat;
       border-bottom:1px solid #e2e8f0;
-      min-height:420px;
+      min-height:520px;
     }
     .hero::after{
       content:""; position:absolute; inset:0;
@@ -57,6 +66,9 @@
       pointer-events:none;
     }
     .hero .inner{position:relative; z-index:1}
+
+    /* Evita che l’anchor #quiz finisca sotto l’header sticky */
+    #quiz { scroll-margin-top:100px; }
   </style>
 </head>
 <body>
@@ -189,7 +201,7 @@
 
 <script>
 const CALENDLY = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
-const FORM_ENDPOINT = null; // se vuoi salvare su Formspree/Zapier, metti qui l'endpoint
+const FORM_ENDPOINT = null; // se vuoi salvare su Formspree/Zapier, metti l'endpoint
 
 const questions=[
   {key:"leadTarget",label:"Quante anagrafiche qualificate vuoi ogni mese?",options:["Fino a 50/mese","50–150/mese",">150/mese"]},
