@@ -48,8 +48,8 @@
     .avatar{width:32px;height:32px;border-radius:999px;object-fit:cover}
 
     /* Logo header più grande */
-    .logo-nemo { height:72px; }
-    @media (max-width:640px){ .logo-nemo { height:48px; } }
+    .logo-nemo { height:96px; }
+    @media (max-width:640px){ .logo-nemo { height:56px; } }
 
     /* HERO con immagine come background (percorso RELATIVO) */
     .hero{
@@ -69,6 +69,22 @@
 
     /* Evita che l’anchor #quiz finisca sotto l’header sticky */
     #quiz { scroll-margin-top:120px; }
+
+    /* Quiz: evidenzia risposta selezionata */
+    .btn-choice{
+      border:1px solid #cbd5e1;
+      background:#fff;
+      text-align:left;
+      border-radius:14px;
+      padding:12px 18px;
+      transition:background .15s, color .15s, border-color .15s;
+    }
+    .btn-choice:hover{ border-color: var(--teal); }
+    .btn-choice.selected{
+      background: var(--teal);
+      color:#fff;
+      border-color: var(--teal);
+    }
   </style>
 </head>
 <body>
@@ -203,7 +219,7 @@
 const CALENDLY = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
 const FORM_ENDPOINT = null;
 
-// 🔝 evita apertura a metà: niente scroll “restoration” e vai in alto se non c’è hash
+// evita apertura a metà
 try {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (!location.hash) { window.scrollTo(0,0); }
@@ -224,12 +240,25 @@ function renderQ(){
   const q=questions[step]; const pct=Math.round(step/questions.length*100); pbar.style.width=pct+'%';
   qbox.innerHTML=`<div style="font-size:18px;font-weight:700">${q.label}</div>
   <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
-    ${q.options.map((o,i)=>`<button class="btn" style="border:1px solid #cbd5e1;background:#fff;text-align:left" onclick="pick('${q.key}', ${i})">${o}</button>`).join('')}
+    ${q.options.map((o,i)=>`
+      <button class="btn btn-choice ${answers[q.key]===i ? 'selected' : ''}"
+              onclick="pick('${q.key}', ${i}, this)">${o}</button>
+    `).join('')}
   </div>
-  ${step>0?'<button class="btn" style="margin-top:10px" onclick="back()">Indietro</button>':''}`;
+  ${step>0?'<button class="btn btn-outline" style="margin-top:10px" onclick="back()">Indietro</button>':''}`;
 }
-function pick(key, idx){ answers[key]=idx; step++; if(step<questions.length){renderQ()} else {showResult()} }
+
+function pick(key, idx, el){
+  answers[key]=idx;
+  if(el) el.classList.add('selected');       // feedback immediato
+  setTimeout(()=>{                           // breve pausa per mostrare il verde
+    step++;
+    if(step<questions.length){renderQ()} else {showResult()}
+  },120);
+}
+
 function back(){ step=Math.max(0,step-1); renderQ(); }
+
 function showResult(){
   pbar.style.width='100%';
   document.getElementById('result').style.display='grid';
@@ -239,9 +268,11 @@ function showResult(){
   if(answers.budget===2)score+=3; else if(answers.budget===1)score+=2; else if(answers.budget>=0)score+=1;
   if(answers.funnel===2)score+=3; else if(answers.funnel===1)score+=2; else if(answers.funnel>=0)score+=1;
   if(answers.team===2)score+=3; else if(answers.team===1)score+=2; else if(answers.team>=0)score+=1;
+
   let tier={name:"Kickstart",desc:"Agosto smart: mettiamo a terra il funnel e partiamo con le prime lead.",list:["Set up funnel di affiliazione e landing ottimizzata","Contenuti editoriali base su network","Prime 50–100 anagrafiche mirate"]};
   if(score>=10) tier={name:"Scale Fast",desc:"Settembre alla grande: multicanale, multi-paese, ottimizzazione continua.",list:["Copertura multi-paese + multicanale","Segmentazione avanzata e nurturing","300+ anagrafiche/mese"]};
   else if(score>=7) tier={name:"Grow Steady",desc:"Rotta chiara per l’autunno: contenuti, landing e lead qualificate costanti.",list:["Editorial plan + 2–3 landing tematiche","Ottimizzazione continua con check ogni 30 lead","100–300 anagrafiche/mese"]};
+
   document.getElementById('tierTitle').textContent=tier.name;
   document.getElementById('tierDesc').textContent=tier.desc;
   document.getElementById('tierList').innerHTML=tier.list.map(i=>`<li>${i}</li>`).join('');
@@ -253,8 +284,11 @@ document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const data=Object.fromEntries(new FormData(e.target).entries());
   const payload={...data,...answers,source:"nemo-landing-quiz"};
-  try{ if(FORM_ENDPOINT){ await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}); } }
-  catch(err){}
+  try{
+    if(FORM_ENDPOINT){
+      await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    }
+  }catch(err){}
   window.location.href=CALENDLY;
 });
 
