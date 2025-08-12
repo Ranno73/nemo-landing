@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
 
-  <!-- favicon + preload hero -->
-  <link rel="icon" href="/nemo-landing/public/nemo-logo.png" />
-  <link rel="preload" as="image" href="/nemo-landing/public/hero-summer.jpg" />
+  <!-- favicon + preload hero (percorsi RELATIVI) -->
+  <link rel="icon" href="public/nemo-logo.png" />
+  <link rel="preload" as="image" href="public/hero-summer.jpg" />
 
   <style>
     :root { --teal:#14b8a6; --ink:#0f172a; --muted:#64748b; --bg1:#ecfeff; --bg2:#f0fdf4; }
@@ -51,14 +51,14 @@
     .logo-nemo { height:72px; }
     @media (max-width:640px){ .logo-nemo { height:48px; } }
 
-    /* HERO con grafica estiva (fallback + immagine) */
+    /* HERO con immagine come background (percorso RELATIVO) */
     .hero{
       position:relative;
       background:
-        linear-gradient(180deg,#e6fffb,#f0fdf4),
-        url('/nemo-landing/public/hero-summer.jpg') center/cover no-repeat;
+        url('public/hero-summer.jpg') center/cover no-repeat,
+        linear-gradient(180deg,#e6fffb,#f0fdf4);
       border-bottom:1px solid #e2e8f0;
-      min-height:520px;
+      min-height:560px;
     }
     .hero::after{
       content:""; position:absolute; inset:0;
@@ -68,16 +68,16 @@
     .hero .inner{position:relative; z-index:1}
 
     /* Evita che l’anchor #quiz finisca sotto l’header sticky */
-    #quiz { scroll-margin-top:100px; }
+    #quiz { scroll-margin-top:120px; }
   </style>
 </head>
 <body>
 <header>
   <div class="container row">
-    <img src="/nemo-landing/public/nemo-logo.png" alt="Nemo Group" class="logo-nemo" />
+    <img src="public/nemo-logo.png" alt="Nemo Group" class="logo-nemo" />
     <div>
       <a href="https://www.linkedin.com/in/gianlucaranno/" target="_blank" class="btn btn-outline" style="margin-right:8px">
-        <img src="/nemo-landing/public/gianluca.jpg" class="avatar" alt="Gian Luca Ranno" /> Gian Luca Ranno
+        <img src="public/gianluca.jpg" class="avatar" alt="Gian Luca Ranno" /> Gian Luca Ranno
       </a>
       <a id="ctaTop" href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-primary">Prenota una call</a>
     </div>
@@ -123,27 +123,27 @@
         <div class="muted" style="font-size:12px">(passa il mouse per fermare)</div>
       </div>
       <div class="marquee" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
-        <img loading="lazy" src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
-        <img loading="lazy" src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
-        <img loading="lazy" src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
-        <img loading="lazy" src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
-        <img loading="lazy" src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
-        <img loading="lazy" src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
-        <img loading="lazy" src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
-        <img loading="lazy" src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
-        <img loading="lazy" src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
-        <img loading="lazy" src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
+        <img loading="lazy" src="public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img loading="lazy" src="public/logos/ovs.png" alt="OVS" />
+        <img loading="lazy" src="public/logos/mbe.png" alt="MBE" />
+        <img loading="lazy" src="public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img loading="lazy" src="public/logos/kidsandus.png" alt="Kids&Us" />
+        <img loading="lazy" src="public/logos/naturhouse.png" alt="Naturhouse" />
+        <img loading="lazy" src="public/logos/kumon.png" alt="Kumon" />
+        <img loading="lazy" src="public/logos/gostudent.png" alt="GoStudent" />
+        <img loading="lazy" src="public/logos/lasaponaria.png" alt="La Saponaria" />
+        <img loading="lazy" src="public/logos/layogurteria.png" alt="La Yogurteria" />
         <!-- duplico per loop infinito -->
-        <img loading="lazy" src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
-        <img loading="lazy" src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
-        <img loading="lazy" src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
-        <img loading="lazy" src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
-        <img loading="lazy" src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
-        <img loading="lazy" src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
-        <img loading="lazy" src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
-        <img loading="lazy" src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
-        <img loading="lazy" src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
-        <img loading="lazy" src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
+        <img loading="lazy" src="public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img loading="lazy" src="public/logos/ovs.png" alt="OVS" />
+        <img loading="lazy" src="public/logos/mbe.png" alt="MBE" />
+        <img loading="lazy" src="public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img loading="lazy" src="public/logos/kidsandus.png" alt="Kids&Us" />
+        <img loading="lazy" src="public/logos/naturhouse.png" alt="Naturhouse" />
+        <img loading="lazy" src="public/logos/kumon.png" alt="Kumon" />
+        <img loading="lazy" src="public/logos/gostudent.png" alt="GoStudent" />
+        <img loading="lazy" src="public/logos/lasaponaria.png" alt="La Saponaria" />
+        <img loading="lazy" src="public/logos/layogurteria.png" alt="La Yogurteria" />
       </div>
     </div>
   </section>
@@ -201,8 +201,15 @@
 
 <script>
 const CALENDLY = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
-const FORM_ENDPOINT = null; // se vuoi salvare su Formspree/Zapier, metti l'endpoint
+const FORM_ENDPOINT = null;
 
+// 🔝 evita apertura a metà: niente scroll “restoration” e vai in alto se non c’è hash
+try {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) { window.scrollTo(0,0); }
+} catch(_) {}
+
+// --- QUIZ ---
 const questions=[
   {key:"leadTarget",label:"Quante anagrafiche qualificate vuoi ogni mese?",options:["Fino a 50/mese","50–150/mese",">150/mese"]},
   {key:"budget",label:"Qual è il budget mensile stimato per la lead generation?",options:["< 2.000€","2.000–5.000€","> 5.000€"]},
@@ -241,15 +248,13 @@ function showResult(){
 }
 renderQ();
 
+// invio form
 document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const data=Object.fromEntries(new FormData(e.target).entries());
   const payload={...data,...answers,source:"nemo-landing-quiz"};
-  try{
-    if(FORM_ENDPOINT){
-      await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-    }
-  }catch(err){}
+  try{ if(FORM_ENDPOINT){ await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}); } }
+  catch(err){}
   window.location.href=CALENDLY;
 });
 
