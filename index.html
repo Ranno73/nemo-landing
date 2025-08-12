@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
+  <link rel="icon" href="public/nemo-logo.png" />
+  <style>
+    :root { --teal:#14b8a6; --ink:#0f172a; --muted:#64748b; --bg1:#ecfeff; --bg2:#f0fdf4; }
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg1),var(--bg2));}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.7);border-bottom:1px solid #e2e8f0}
+    header .row{display:flex;align-items:center;justify-content:space-between}
+    .btn{display:inline-block;padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:600}
+    .btn-primary{background:var(--teal);color:#fff}
+    .btn-outline{border:1px solid #cbd5e1;color:var(--ink);background:#fff}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid #cbd5e1;border-radius:999px;background:rgba(255,255,255,.7);font-size:12px;color:#0f766e;text-transform:uppercase;letter-spacing:.08em}
+    h1{font-size:40px;line-height:1.1;margin:16px 0}
+    .grid{display:grid;gap:24px}
+    @media(min-width:900px){.grid-2{grid-template-columns:1.1fr .9fr} .grid-3{grid-template-columns:repeat(3,1fr)}}
+    .card{border:1px solid #e2e8f0;border-radius:20px;background:rgba(255,255,255,.7);padding:24px}
+    .muted{color:var(--muted)}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .kpis .kpi{padding:16px;border-radius:16px;border:1px solid #e2e8f0;background:rgba(255,255,255,.7)}
+    .kpis .val{font-size:28px;font-weight:800;color:#0f766e;margin-top:4px}
+    .logos{overflow:hidden;border:1px solid #e2e8f0;border-radius:20px;background:rgba(255,255,255,.7)}
+    .marquee{display:flex;gap:40px;align-items:center;animation:marquee 30s linear infinite;padding:16px}
+    .marquee img{height:36px;opacity:.8;transition:opacity .2s}
+    .marquee img:hover{opacity:1}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    footer{border-top:1px solid #e2e8f0;margin-top:24px}
+    input,textarea{width:100%;padding:12px 14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}
+    .progress{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+    .progress > div{height:100%;background:var(--teal);width:0%}
+    .avatar{width:32px;height:32px;border-radius:999px;object-fit:cover}
+  </style>
+</head>
+<body>
+<header>
+  <div class="container row">
+    <img src="public/nemo-logo.png" alt="Nemo Group" style="height:40px" />
+    <div>
+      <a href="https://www.linkedin.com/in/gianlucaranno/" target="_blank" class="btn btn-outline" style="margin-right:8px">
+        <img src="public/gianluca.jpg" class="avatar" alt="Gian Luca" /> Gian Luca Ranno
+      </a>
+      <a href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-primary">Prenota una call</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="grid grid-2" style="margin-top:24px">
+    <div>
+      <div class="pill">Agosto non si butta · Si prepara Settembre</div>
+      <h1>Trasforma Agosto in <span style="color:#0f766e">vantaggio competitivo</span>.</h1>
+      <p class="muted" style="font-size:18px">Mentre gli altri sono fermi, tu prepari il terreno: contenuti che presidiano Google, landing che convertono e anagrafiche che <em>vogliono</em> sentirti a settembre.</p>
+      <div class="hero-cta">
+        <a href="#quiz" class="btn btn-primary">Fai il check in 60 secondi</a>
+        <a href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-outline">Parla con Gian Luca</a>
+        <a href="https://www.linkedin.com/in/gianlucaranno/" target="_blank" class="btn btn-outline">Profilo LinkedIn</a>
+      </div>
+      <div class="muted" style="margin-top:10px">• 12,5M+ utenti raggiunti • 95% rinnovi • 1000+ anagrafiche/mese</div>
+    </div>
+    <div class="card">
+      <div class="muted" style="font-size:14px">Case Study</div>
+      <div style="font-weight:800;font-size:22px;margin-top:6px">SoloAffitti</div>
+      <ul style="margin:14px 0 10px 18px;line-height:1.6">
+        <li>870 anagrafiche profilate</li>
+        <li>1,4M visualizzazioni brand</li>
+        <li>8 contenuti editoriali · 3 landing</li>
+        <li><b>10 nuove aperture</b> generate dalla campagna</li>
+      </ul>
+      <div class="muted" style="font-size:12px">Campagna organica su network editoriale (2021–2023).</div>
+    </div>
+  </section>
+
+  <section style="margin-top:18px">
+    <div class="logos">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px">
+        <div style="font-weight:700;color:#0f766e">Alcuni dei brand che ci hanno scelto</div>
+        <div class="muted" style="font-size:12px">(passa il mouse per fermare)</div>
+      </div>
+      <div class="marquee" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
+        <img src="public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img src="public/logos/ovs.png" alt="OVS" />
+        <img src="public/logos/mbe.png" alt="MBE" />
+        <img src="public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img src="public/logos/kidsandus.png" alt="Kids&Us" />
+        <img src="public/logos/naturhouse.png" alt="Naturhouse" />
+        <img src="public/logos/kumon.png" alt="Kumon" />
+        <!-- duplica per loop infinito -->
+        <img src="public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img src="public/logos/ovs.png" alt="OVS" />
+        <img src="public/logos/mbe.png" alt="MBE" />
+        <img src="public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img src="public/logos/kidsandus.png" alt="Kids&Us" />
+        <img src="public/logos/naturhouse.png" alt="Naturhouse" />
+        <img src="public/logos/kumon.png" alt="Kumon" />
+      </div>
+    </div>
+  </section>
+
+  <section class="kpis grid grid-3" style="margin-top:18px">
+    <div class="kpi"><div class="muted">Copertura</div><div class="val">12,5M+</div><div class="muted">utenti sui siti partner</div></div>
+    <div class="kpi"><div class="muted">Rinnovi</div><div class="val">95%</div><div class="muted">tasso medio clienti</div></div>
+    <div class="kpi"><div class="muted">Volume</div><div class="val">1000+</div><div class="muted">anagrafiche/mese</div></div>
+  </section>
+
+  <section id="quiz" class="card" style="margin-top:24px">
+    <h3 style="margin:0 0 8px 0">Mini-diagnosi: cosa puoi sbloccare entro Settembre?</h3>
+    <div class="progress"><div id="pbar"></div></div>
+    <div id="qbox" style="margin-top:14px"></div>
+
+    <div id="result" style="display:none;margin-top:16px" class="grid grid-2">
+      <div>
+        <div class="muted" style="font-weight:700;color:#0f766e">Suggerimento</div>
+        <div id="tierTitle" style="font-size:22px;font-weight:800"></div>
+        <p id="tierDesc" class="muted"></p>
+        <ul id="tierList" style="margin-left:20px"></ul>
+      </div>
+      <form id="leadForm" class="card" style="margin:0">
+        <div style="font-size:18px;font-weight:700">Ricevi una stima e fissa la call</div>
+        <p class="muted">Compila i dati: ti inviamo un recap del piano suggerito e il link al calendario.</p>
+        <input placeholder="Azienda" required name="company" />
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <input placeholder="Nome e cognome" required name="name" />
+          <input placeholder="Ruolo" name="role" />
+        </div>
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <input placeholder="Email" type="email" required name="email" />
+          <input placeholder="Telefono" name="phone" />
+        </div>
+        <textarea placeholder="Note (opzionale)" rows="3" name="notes" style="margin-top:12px"></textarea>
+        <button class="btn btn-primary" style="margin-top:12px">Invia e vai al calendario →</button>
+        <div class="muted" style="font-size:12px;margin-top:8px">Con l’invio autorizzi il trattamento dei dati per finalità di contatto commerciale. Nessuno spam, promesso.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container" style="display:grid;gap:16px;grid-template-columns:2fr 1fr;align-items:center">
+    <div>
+      <div style="font-size:22px;font-weight:800">Chiudiamo Agosto con le idee chiare?</div>
+      <p class="muted">Prenota 20 minuti con Gian Luca: obiettivi, tempi e priorità. Se non è fit, te lo diciamo subito.</p>
+    </div>
+    <div style="text-align:right">
+      <a href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-primary">Prenota ora</a>
+    </div>
+  </div>
+  <div class="container muted" style="text-align:center;font-size:12px">© <span id="year"></span> Nemo Group</div>
+</footer>
+
+<script>
+const CALENDLY="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
+const FORM_ENDPOINT=null; // se lo metti (Formspree/Zapier), salvo i dati
+
+const questions=[
+  {key:"leadTarget",label:"Quante anagrafiche qualificate vuoi ogni mese?",options:["Fino a 50/mese","50–150/mese",">150/mese"]},
+  {key:"budget",label:"Qual è il budget mensile stimato per la lead generation?",options:["< 2.000€","2.000–5.000€","> 5.000€"]},
+  {key:"geo",label:"Dove vuoi crescere?",options:["Italia","Europa","Globale"]},
+  {key:"time",label:"Entro quando vuoi vedere i primi risultati?",options:["Subito (entro 2–3 settimane)","Entro un trimestre","Nel medio periodo"]},
+  {key:"funnel",label:"Com’è oggi il tuo funnel di affiliazione?",options:["Pochi contenuti, nessuna landing dedicata","Qualche contenuto e una landing base","Funnel maturo con nurturing e KPI"]},
+  {key:"team",label:"Hai un team interno per gestire le anagrafiche?",options:["No, serve supporto completo","Sì, team snello (1–2 persone)","Sì, team strutturato"]},
+];
+let step=0; const answers={}; const qbox=document.getElementById('qbox'); const pbar=document.getElementById('pbar');
+
+function renderQ(){
+  const q=questions[step]; const pct=Math.round(step/questions.length*100); pbar.style.width=pct+'%';
+  qbox.innerHTML=`<div style="font-size:18px;font-weight:700">${q.label}</div>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
+    ${q.options.map((o,i)=>`<button class="btn" style="border:1px solid #cbd5e1;background:#fff;text-align:left" onclick="pick('${q.key}', ${i})">${o}</button>`).join('')}
+  </div>
+  ${step>0?'<button class="btn" style="margin-top:10px" onclick="back()">Indietro</button>':''}`;
+}
+function pick(key, idx){ answers[key]=idx; step++; if(step<questions.length){renderQ()} else {showResult()} }
+function back(){ step=Math.max(0,step-1); renderQ(); }
+function showResult(){
+  pbar.style.width='100%';
+  document.getElementById('result').style.display='grid';
+  qbox.innerHTML='';
+  let score=0;
+  if(answers.leadTarget===2)score+=3; else if(answers.leadTarget===1)score+=2; else if(answers.leadTarget>=0)score+=1;
+  if(answers.budget===2)score+=3; else if(answers.budget===1)score+=2; else if(answers.budget>=0)score+=1;
+  if(answers.funnel===2)score+=3; else if(answers.funnel===1)score+=2; else if(answers.funnel>=0)score+=1;
+  if(answers.team===2)score+=3; else if(answers.team===1)score+=2; else if(answers.team>=0)score+=1;
+  let tier={name:"Kickstart",desc:"Agosto smart: mettiamo a terra il funnel e partiamo con le prime lead.",list:["Set up funnel di affiliazione e landing ottimizzata","Contenuti editoriali base su network","Prime 50–100 anagrafiche mirate"]};
+  if(score>=10) tier={name:"Scale Fast",desc:"Settembre alla grande: multicanale, multi-paese, ottimizzazione continua.",list:["Copertura multi-paese + multicanale","Segmentazione avanzata e nurturing","300+ anagrafiche/mese"]};
+  else if(score>=7) tier={name:"Grow Steady",desc:"Rotta chiara per l’autunno: contenuti, landing e lead qualificate costanti.",list:["Editorial plan + 2–3 landing tematiche","Ottimizzazione continua con check ogni 30 lead","100–300 anagrafiche/mese"]};
+  document.getElementById('tierTitle').textContent=tier.name;
+  document.getElementById('tierDesc').textContent=tier.desc;
+  document.getElementById('tierList').innerHTML=tier.list.map(i=>`<li>${i}</li>`).join('');
+}
+renderQ();
+
+document.getElementById('leadForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const data=Object.fromEntries(new FormData(e.target).entries());
+  const payload={...data,...answers,source:"nemo-landing-quiz"};
+  try{
+    if(FORM_ENDPOINT){
+      await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    }
+  }catch(err){}
+  window.location.href=CALENDLY;
+});
+
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
