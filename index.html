@@ -4,7 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
+
+  <!-- favicon e preload hero -->
   <link rel="icon" href="/nemo-landing/public/nemo-logo.png" />
+  <link rel="preload" as="image" href="/nemo-landing/public/hero-summer.jpg" imagesrcset="/nemo-landing/public/hero-summer.jpg 1920w" />
+
   <style>
     :root { --teal:#14b8a6; --ink:#0f172a; --muted:#64748b; --bg1:#ecfeff; --bg2:#f0fdf4; }
     *{box-sizing:border-box}
@@ -29,6 +33,7 @@
     .marquee img{height:36px;opacity:.8;transition:opacity .2s}
     .marquee img:hover{opacity:1}
     @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @media (prefers-reduced-motion: reduce){ .marquee{animation:none} }
     footer{border-top:1px solid #e2e8f0;margin-top:24px}
     input,textarea{width:100%;padding:12px 14px;border:1px solid #e2e8f0;border-radius:12px;background:#fff}
     .progress{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}
@@ -106,27 +111,27 @@
         <div class="muted" style="font-size:12px">(passa il mouse per fermare)</div>
       </div>
       <div class="marquee" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
-        <img src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
-        <img src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
-        <img src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
-        <img src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
-        <img src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
-        <img src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
-        <img src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
-        <img src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
-        <img src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
-        <img src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
+        <img loading="lazy" src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img loading="lazy" src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
+        <img loading="lazy" src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
+        <img loading="lazy" src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img loading="lazy" src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
+        <img loading="lazy" src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
+        <img loading="lazy" src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
+        <img loading="lazy" src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
+        <img loading="lazy" src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
+        <img loading="lazy" src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
         <!-- duplico per loop infinito -->
-        <img src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
-        <img src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
-        <img src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
-        <img src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
-        <img src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
-        <img src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
-        <img src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
-        <img src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
-        <img src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
-        <img src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
+        <img loading="lazy" src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img loading="lazy" src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
+        <img loading="lazy" src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
+        <img loading="lazy" src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img loading="lazy" src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
+        <img loading="lazy" src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
+        <img loading="lazy" src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
+        <img loading="lazy" src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
+        <img loading="lazy" src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
+        <img loading="lazy" src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
       </div>
     </div>
   </section>
