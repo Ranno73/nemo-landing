@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
 
-  <!-- favicon + preload hero (percorsi RELATIVI) -->
   <link rel="icon" href="public/nemo-logo.png" />
   <link rel="preload" as="image" href="public/hero-summer.jpg" />
 
@@ -47,11 +46,11 @@
     .progress > div{height:100%;background:var(--teal);width:0%}
     .avatar{width:32px;height:32px;border-radius:999px;object-fit:cover}
 
-    /* Logo header più grande */
-    .logo-nemo { height:96px; }
-    @media (max-width:640px){ .logo-nemo { height:56px; } }
+    /* Logo header più grande (forzato) */
+    .logo-nemo{height:112px !important;}
+    @media (max-width:640px){ .logo-nemo{height:64px !important;} }
 
-    /* HERO con immagine come background (percorso RELATIVO) */
+    /* HERO (se metti l'immagine in /public/hero-summer.jpg la vedrai) */
     .hero{
       position:relative;
       background:
@@ -70,21 +69,13 @@
     /* Evita che l’anchor #quiz finisca sotto l’header sticky */
     #quiz { scroll-margin-top:120px; }
 
-    /* Quiz: evidenzia risposta selezionata */
+    /* Quiz: bottone selezionato in verde */
     .btn-choice{
-      border:1px solid #cbd5e1;
-      background:#fff;
-      text-align:left;
-      border-radius:14px;
-      padding:12px 18px;
-      transition:background .15s, color .15s, border-color .15s;
+      border:1px solid #cbd5e1; background:#fff; text-align:left;
+      border-radius:14px; padding:12px 18px; transition:background .15s,color .15s,border-color .15s;
     }
     .btn-choice:hover{ border-color: var(--teal); }
-    .btn-choice.selected{
-      background: var(--teal);
-      color:#fff;
-      border-color: var(--teal);
-    }
+    .btn-choice.selected{ background: var(--teal) !important; color:#fff !important; border-color: var(--teal) !important; }
   </style>
 </head>
 <body>
@@ -100,7 +91,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="container inner" style="padding-top:36px; padding-bottom:18px">
     <div class="grid grid-2" style="align-items:center">
@@ -219,13 +209,12 @@
 const CALENDLY = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
 const FORM_ENDPOINT = null;
 
-// evita apertura a metà
 try {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   if (!location.hash) { window.scrollTo(0,0); }
 } catch(_) {}
 
-// --- QUIZ ---
+/* === QUIZ === */
 const questions=[
   {key:"leadTarget",label:"Quante anagrafiche qualificate vuoi ogni mese?",options:["Fino a 50/mese","50–150/mese",">150/mese"]},
   {key:"budget",label:"Qual è il budget mensile stimato per la lead generation?",options:["< 2.000€","2.000–5.000€","> 5.000€"]},
@@ -237,30 +226,31 @@ const questions=[
 let step=0; const answers={}; const qbox=document.getElementById('qbox'); const pbar=document.getElementById('pbar');
 
 function renderQ(){
-  const q=questions[step]; const pct=Math.round(step/questions.length*100); pbar.style.width=pct+'%';
+  const q=questions[step]; const pct=Math.round(step/questions.length*100); if(pbar) pbar.style.width=pct+'%';
   qbox.innerHTML=`<div style="font-size:18px;font-weight:700">${q.label}</div>
   <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
     ${q.options.map((o,i)=>`
-      <button class="btn btn-choice ${answers[q.key]===i ? 'selected' : ''}"
+      <button type="button"
+              class="btn btn-choice ${answers[q.key]===i ? 'selected' : ''}"
               onclick="pick('${q.key}', ${i}, this)">${o}</button>
     `).join('')}
   </div>
-  ${step>0?'<button class="btn btn-outline" style="margin-top:10px" onclick="back()">Indietro</button>':''}`;
+  ${step>0?'<button type="button" class="btn btn-outline" style="margin-top:10px" onclick="back()">Indietro</button>':''}`;
 }
 
 function pick(key, idx, el){
+  // togli selected agli altri della stessa domanda
+  const group = el?.parentElement?.querySelectorAll('.btn-choice') || [];
+  group.forEach(b=>b.classList.remove('selected'));
   answers[key]=idx;
-  if(el) el.classList.add('selected');       // feedback immediato
-  setTimeout(()=>{                           // breve pausa per mostrare il verde
-    step++;
-    if(step<questions.length){renderQ()} else {showResult()}
-  },120);
+  if(el) el.classList.add('selected');
+  setTimeout(()=>{ step++; (step<questions.length)?renderQ():showResult(); }, 120);
 }
 
 function back(){ step=Math.max(0,step-1); renderQ(); }
 
 function showResult(){
-  pbar.style.width='100%';
+  if(pbar) pbar.style.width='100%';
   document.getElementById('result').style.display='grid';
   qbox.innerHTML='';
   let score=0;
@@ -279,16 +269,13 @@ function showResult(){
 }
 renderQ();
 
-// invio form
+/* invio form */
 document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const data=Object.fromEntries(new FormData(e.target).entries());
   const payload={...data,...answers,source:"nemo-landing-quiz"};
-  try{
-    if(FORM_ENDPOINT){
-      await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-    }
-  }catch(err){}
+  try{ if(FORM_ENDPOINT){ await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}); } }
+  catch(err){}
   window.location.href=CALENDLY;
 });
 
