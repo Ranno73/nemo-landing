@@ -4,12 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
-  <link rel="icon" href="public/nemo-logo.png" />
+  <link rel="icon" href="/nemo-landing/public/nemo-logo.png" />
   <style>
     :root { --teal:#14b8a6; --ink:#0f172a; --muted:#64748b; --bg1:#ecfeff; --bg2:#f0fdf4; }
-    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg1),var(--bg2));}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg1),var(--bg2));}
     .container{max-width:1100px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.7);border-bottom:1px solid #e2e8f0}
+    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(8px);background:rgba(255,255,255,.7);border-bottom:1px solid #e2e8f0;z-index:10}
     header .row{display:flex;align-items:center;justify-content:space-between}
     .btn{display:inline-block;padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:600}
     .btn-primary{background:var(--teal);color:#fff}
@@ -33,47 +34,71 @@
     .progress{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}
     .progress > div{height:100%;background:var(--teal);width:0%}
     .avatar{width:32px;height:32px;border-radius:999px;object-fit:cover}
+
+    /* Logo header più grande */
+    .logo-nemo { height:72px; }
+    @media (max-width:640px){ .logo-nemo { height:48px; } }
+
+    /* HERO con grafica estiva: path per GitHub Pages sotto /nemo-landing */
+    .hero{
+      position:relative;
+      background:url('/nemo-landing/public/hero-summer.jpg') center/cover no-repeat;
+      border-bottom:1px solid #e2e8f0;
+      min-height:420px;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(90deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.65) 42%,rgba(255,255,255,0) 78%);
+      pointer-events:none;
+    }
+    .hero .inner{position:relative; z-index:1}
   </style>
 </head>
 <body>
 <header>
   <div class="container row">
-    <img src="public/nemo-logo.png" alt="Nemo Group" style="height:40px" />
+    <img src="/nemo-landing/public/nemo-logo.png" alt="Nemo Group" class="logo-nemo" />
     <div>
       <a href="https://www.linkedin.com/in/gianlucaranno/" target="_blank" class="btn btn-outline" style="margin-right:8px">
-        <img src="public/gianluca.jpg" class="avatar" alt="Gian Luca" /> Gian Luca Ranno
+        <img src="/nemo-landing/public/gianluca.jpg" class="avatar" alt="Gian Luca Ranno" /> Gian Luca Ranno
       </a>
-      <a href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-primary">Prenota una call</a>
+      <a id="ctaTop" href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-primary">Prenota una call</a>
     </div>
   </div>
 </header>
 
-<main class="container">
-  <section class="grid grid-2" style="margin-top:24px">
-    <div>
-      <div class="pill">Agosto non si butta · Si prepara Settembre</div>
-      <h1>Trasforma Agosto in <span style="color:#0f766e">vantaggio competitivo</span>.</h1>
-      <p class="muted" style="font-size:18px">Mentre gli altri sono fermi, tu prepari il terreno: contenuti che presidiano Google, landing che convertono e anagrafiche che <em>vogliono</em> sentirti a settembre.</p>
-      <div class="hero-cta">
-        <a href="#quiz" class="btn btn-primary">Fai il check in 60 secondi</a>
-        <a href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-outline">Parla con Gian Luca</a>
-        <a href="https://www.linkedin.com/in/gianlucaranno/" target="_blank" class="btn btn-outline">Profilo LinkedIn</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="container inner" style="padding-top:36px; padding-bottom:18px">
+    <div class="grid grid-2" style="align-items:center">
+      <div>
+        <div class="pill">Agosto non si butta · Si prepara Settembre</div>
+        <h1>Trasforma Agosto in <span style="color:#0f766e">vantaggio competitivo</span>.</h1>
+        <p class="muted" style="font-size:18px">Mentre gli altri sono fermi, tu prepari il terreno: contenuti che presidiano Google, landing che convertono e anagrafiche che <em>vogliono</em> sentirti a settembre.</p>
+        <div class="hero-cta">
+          <a href="#quiz" class="btn btn-primary">Fai il check in 60 secondi</a>
+          <a id="ctaMid" href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-outline">Parla con Gian Luca</a>
+          <a href="https://www.linkedin.com/in/gianlucaranno/" target="_blank" class="btn btn-outline">Profilo LinkedIn</a>
+        </div>
+        <div class="muted" style="margin-top:10px">• 12,5M+ utenti raggiunti • 95% rinnovi • 1000+ anagrafiche/mese</div>
       </div>
-      <div class="muted" style="margin-top:10px">• 12,5M+ utenti raggiunti • 95% rinnovi • 1000+ anagrafiche/mese</div>
-    </div>
-    <div class="card">
-      <div class="muted" style="font-size:14px">Case Study</div>
-      <div style="font-weight:800;font-size:22px;margin-top:6px">SoloAffitti</div>
-      <ul style="margin:14px 0 10px 18px;line-height:1.6">
-        <li>870 anagrafiche profilate</li>
-        <li>1,4M visualizzazioni brand</li>
-        <li>8 contenuti editoriali · 3 landing</li>
-        <li><b>10 nuove aperture</b> generate dalla campagna</li>
-      </ul>
-      <div class="muted" style="font-size:12px">Campagna organica su network editoriale (2021–2023).</div>
-    </div>
-  </section>
 
+      <div class="card" style="margin:12px 0 12px auto; max-width:520px">
+        <div class="muted" style="font-size:14px">Case Study</div>
+        <div style="font-weight:800;font-size:22px;margin-top:6px">SoloAffitti</div>
+        <ul style="margin:14px 0 10px 18px;line-height:1.6">
+          <li>870 anagrafiche profilate</li>
+          <li>1,4M visualizzazioni brand</li>
+          <li>8 contenuti editoriali · 3 landing</li>
+          <li><b>10 nuove aperture</b> generate dalla campagna</li>
+        </ul>
+        <div class="muted" style="font-size:12px">Campagna organica su network editoriale (2021–2023).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="container">
   <section style="margin-top:18px">
     <div class="logos">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px">
@@ -81,21 +106,27 @@
         <div class="muted" style="font-size:12px">(passa il mouse per fermare)</div>
       </div>
       <div class="marquee" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
-        <img src="public/logos/soloaffitti.png" alt="SoloAffitti" />
-        <img src="public/logos/ovs.png" alt="OVS" />
-        <img src="public/logos/mbe.png" alt="MBE" />
-        <img src="public/logos/goldenpoint.png" alt="Goldenpoint" />
-        <img src="public/logos/kidsandus.png" alt="Kids&Us" />
-        <img src="public/logos/naturhouse.png" alt="Naturhouse" />
-        <img src="public/logos/kumon.png" alt="Kumon" />
-        <!-- duplica per loop infinito -->
-        <img src="public/logos/soloaffitti.png" alt="SoloAffitti" />
-        <img src="public/logos/ovs.png" alt="OVS" />
-        <img src="public/logos/mbe.png" alt="MBE" />
-        <img src="public/logos/goldenpoint.png" alt="Goldenpoint" />
-        <img src="public/logos/kidsandus.png" alt="Kids&Us" />
-        <img src="public/logos/naturhouse.png" alt="Naturhouse" />
-        <img src="public/logos/kumon.png" alt="Kumon" />
+        <img src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
+        <img src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
+        <img src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
+        <img src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
+        <img src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
+        <img src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
+        <img src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
+        <img src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
+        <!-- duplico per loop infinito -->
+        <img src="/nemo-landing/public/logos/soloaffitti.png" alt="SoloAffitti" />
+        <img src="/nemo-landing/public/logos/ovs.png" alt="OVS" />
+        <img src="/nemo-landing/public/logos/mbe.png" alt="MBE" />
+        <img src="/nemo-landing/public/logos/goldenpoint.png" alt="Goldenpoint" />
+        <img src="/nemo-landing/public/logos/kidsandus.png" alt="Kids&Us" />
+        <img src="/nemo-landing/public/logos/naturhouse.png" alt="Naturhouse" />
+        <img src="/nemo-landing/public/logos/kumon.png" alt="Kumon" />
+        <img src="/nemo-landing/public/logos/gostudent.png" alt="GoStudent" />
+        <img src="/nemo-landing/public/logos/lasaponaria.png" alt="La Saponaria" />
+        <img src="/nemo-landing/public/logos/layogurteria.png" alt="La Yogurteria" />
       </div>
     </div>
   </section>
@@ -145,15 +176,15 @@
       <p class="muted">Prenota 20 minuti con Gian Luca: obiettivi, tempi e priorità. Se non è fit, te lo diciamo subito.</p>
     </div>
     <div style="text-align:right">
-      <a href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-primary">Prenota ora</a>
+      <a id="ctaBottom" href="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" target="_blank" class="btn btn-primary">Prenota ora</a>
     </div>
   </div>
   <div class="container muted" style="text-align:center;font-size:12px">© <span id="year"></span> Nemo Group</div>
 </footer>
 
 <script>
-const CALENDLY="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
-const FORM_ENDPOINT=null; // se lo metti (Formspree/Zapier), salvo i dati
+const CALENDLY = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
+const FORM_ENDPOINT = null; // se vuoi salvare su Formspree/Zapier, metti qui l'endpoint
 
 const questions=[
   {key:"leadTarget",label:"Quante anagrafiche qualificate vuoi ogni mese?",options:["Fino a 50/mese","50–150/mese",">150/mese"]},
@@ -193,7 +224,7 @@ function showResult(){
 }
 renderQ();
 
-document.getElementById('leadForm').addEventListener('submit', async (e)=>{
+document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const data=Object.fromEntries(new FormData(e.target).entries());
   const payload={...data,...answers,source:"nemo-landing-quiz"};
