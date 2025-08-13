@@ -126,7 +126,6 @@
     <div class="logos">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px">
         <div style="font-weight:700;color:#0f766e">Alcuni dei brand che ci hanno scelto</div>
-        <!-- testo rimosso -->
       </div>
       <div class="marquee" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
         <img loading="lazy" src="public/logos/soloaffitti.png" alt="SoloAffitti" />
@@ -172,7 +171,13 @@
         <p id="tierDesc" class="muted"></p>
         <ul id="tierList" style="margin-left:20px"></ul>
       </div>
-      <form id="leadForm" class="card" style="margin:0">
+
+      <!-- FORM nativo: invia a Formspree e poi reindirizza su Calendly -->
+      <form id="leadForm"
+            class="card"
+            style="margin:0"
+            action="https://formspree.io/f/xqalnneb"
+            method="POST">
         <div style="font-size:18px;font-weight:700">Ricevi una stima e fissa la call</div>
         <p class="muted">Compila i dati: ti inviamo un recap del piano suggerito e il link al calendario.</p>
         <input placeholder="Azienda" required name="company" />
@@ -185,6 +190,18 @@
           <input placeholder="Telefono" name="phone" />
         </div>
         <textarea placeholder="Note (opzionale)" rows="3" name="notes" style="margin-top:12px"></textarea>
+
+        <!-- hidden utili -->
+        <input type="hidden" name="_subject" value="Nuovo lead · Nemo Landing" />
+        <input type="hidden" name="_redirect" value="https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france" />
+        <input type="hidden" name="leadTarget" id="fs_leadTarget" />
+        <input type="hidden" name="budget"     id="fs_budget" />
+        <input type="hidden" name="geo"        id="fs_geo" />
+        <input type="hidden" name="time"       id="fs_time" />
+        <input type="hidden" name="funnel"     id="fs_funnel" />
+        <input type="hidden" name="team"       id="fs_team" />
+        <input type="hidden" name="source"     value="nemo-landing-quiz" />
+
         <button class="btn btn-primary" style="margin-top:12px">Invia e vai al calendario →</button>
         <div class="muted" style="font-size:12px;margin-top:8px">Con l’invio autorizzi il trattamento dei dati per finalità di contatto commerciale. Nessuno spam, promesso.</div>
       </form>
@@ -207,7 +224,6 @@
 
 <script>
 const CALENDLY = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
-const FORM_ENDPOINT = "https://formspree.io/f/xqalnneb"; // invio a Formspree + redirect Calendly
 
 try {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -265,28 +281,21 @@ function showResult(){
   document.getElementById('tierTitle').textContent=tier.name;
   document.getElementById('tierDesc').textContent=tier.desc;
   document.getElementById('tierList').innerHTML=tier.list.map(i=>`<li>${i}</li>`).join('');
+
+  /* Copia risposte quiz nei campi hidden del form prima dell'invio */
+  const map = { leadTarget:'fs_leadTarget', budget:'fs_budget', geo:'fs_geo', time:'fs_time', funnel:'fs_funnel', team:'fs_team' };
+  Object.entries(map).forEach(([k, id])=>{
+    const el = document.getElementById(id);
+    if(el){
+      const optIdx = answers[k];
+      const optTxt = questions.find(q=>q.key===k)?.options[optIdx] ?? '';
+      el.value = optTxt;
+    }
+  });
 }
 renderQ();
 
-/* invio form -> Formspree, poi Calendly */
-document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const data=Object.fromEntries(new FormData(e.target).entries());
-  const payload={...data,...answers,source:"nemo-landing-quiz"};
-
-  try{
-    if(FORM_ENDPOINT){
-      await fetch(FORM_ENDPOINT,{
-        method:"POST",
-        headers:{"Content-Type":"application/json","Accept":"application/json"},
-        body:JSON.stringify(payload)
-      });
-    }
-  }catch(err){ /* silenzioso */ }
-
-  window.location.href=CALENDLY;
-});
-
+/* footer anno */
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body>
