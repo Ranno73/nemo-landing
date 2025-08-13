@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
 
+  <!-- SEO base -->
+  <meta name="description" content="Trasforma agosto in vantaggio competitivo: contenuti, landing che convertono e anagrafiche qualificate per ripartire a settembre.">
+  <link rel="canonical" href="https://www.franchisingitalia.com/" />
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.franchisingitalia.com/" />
+  <meta property="og:title" content="Rilassati... al resto pensiamo noi!" />
+  <meta property="og:description" content="Scopri come trasformare agosto in un vantaggio competitivo." />
+  <meta property="og:image" content="https://www.franchisingitalia.com/hero-summer.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.franchisingitalia.com/" />
+  <meta name="twitter:title" content="Rilassati... al resto pensiamo noi!" />
+  <meta name="twitter:description" content="Scopri come trasformare agosto in un vantaggio competitivo." />
+  <meta name="twitter:image" content="https://www.franchisingitalia.com/hero-summer.png" />
+
   <!-- favicon + preload (percorsi RELATIVI per GitHub Pages) -->
   <link rel="icon" href="public/nemo-logo.png" />
   <link rel="preload" as="image" href="public/hero-summer.jpg" />
@@ -287,9 +308,9 @@ document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body:JSON.stringify(payload)
     });
-    // opzionale: puoi controllare res.ok per messaggio di successo/errore
+    // volendo: if(!res.ok){...}
   }catch(err){
-    // silenzioso: anche se offline, mando comunque al Calendly
+    // anche se fallisce, continuo il flusso
   }finally{
     window.location.href = CALENDLY;
   }
