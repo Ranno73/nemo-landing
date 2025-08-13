@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
 
-  <!-- favicon + preload -->
+  <!-- favicon + preload (percorsi RELATIVI per GitHub Pages) -->
   <link rel="icon" href="public/nemo-logo.png" />
   <link rel="preload" as="image" href="public/hero-summer.jpg" />
 
@@ -51,7 +51,7 @@
     .logo-nemo{height:112px !important;}
     @media (max-width:640px){ .logo-nemo{height:64px !important;} }
 
-    /* HERO */
+    /* HERO (usa /public/hero-summer.jpg se presente) */
     .hero{
       position:relative;
       background:
@@ -70,11 +70,10 @@
     /* Evita che l’anchor #quiz finisca sotto l’header sticky */
     #quiz { scroll-margin-top:120px; }
 
-    /* Quiz: stato selezionato in verde */
+    /* Quiz: bottone selezionato in verde */
     .btn-choice{
       border:1px solid #cbd5e1; background:#fff; text-align:left;
       border-radius:14px; padding:12px 18px; transition:background .15s,color .15s,border-color .15s;
-      cursor:pointer;
     }
     .btn-choice:hover{ border-color: var(--teal); }
     .btn-choice.selected{ background: var(--teal) !important; color:#fff !important; border-color: var(--teal) !important; }
@@ -175,16 +174,10 @@
         <ul id="tierList" style="margin-left:20px"></ul>
       </div>
 
-      <!-- FORM: action per fallback + JS fetch -->
-      <form id="leadForm" class="card" style="margin:0"
-            action="https://formspree.io/f/xqalnneb" method="POST">
+      <!-- ===== FORM ===== -->
+      <form id="leadForm" class="card" style="margin:0">
         <div style="font-size:18px;font-weight:700">Ricevi una stima e fissa la call</div>
         <p class="muted">Compila i dati: ti inviamo un recap del piano suggerito e il link al calendario.</p>
-
-        <!-- Hidden utili per Formspree -->
-        <input type="hidden" name="_subject" value="Nuovo lead · Nemo Landing" />
-        <!-- In reply-to user -->
-        <input type="hidden" name="_replyto" value="" id="replytoHidden" />
 
         <input placeholder="Azienda" required name="company" />
         <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
@@ -192,21 +185,21 @@
           <input placeholder="Ruolo" name="role" />
         </div>
         <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-          <input placeholder="Email" type="email" required name="email" id="emailField" />
+          <input placeholder="Email" type="email" required name="email" />
           <input placeholder="Telefono" name="phone" />
         </div>
         <textarea placeholder="Note (opzionale)" rows="3" name="notes" style="margin-top:12px"></textarea>
+
+        <!-- Campi utili per Formspree -->
+        <input type="hidden" name="_subject" value="Nuovo lead · Nemo Landing" />
+        <input type="hidden" name="_format" value="plain" />
 
         <button class="btn btn-primary" style="margin-top:12px">Invia e vai al calendario →</button>
         <div class="muted" style="font-size:12px;margin-top:8px">
           Con l’invio autorizzi il trattamento dei dati per finalità di contatto commerciale. Nessuno spam, promesso.
         </div>
-
-        <!-- Fallback no-JS: redir subito -->
-        <noscript>
-          <p class="muted" style="margin-top:8px">Nota: senza JavaScript verrai reindirizzato manualmente al calendario dopo l’invio.</p>
-        </noscript>
       </form>
+      <!-- ===== /FORM ===== -->
     </div>
   </section>
 </main>
@@ -225,12 +218,12 @@
 </footer>
 
 <script>
-const CALENDLY = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
-const FORM_ENDPOINT = "https://formspree.io/f/xqalnneb";
+const CALENDLY   = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
+const FORMSPREE  = "https://formspree.io/f/xqalnneb";
 
 try {
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (!location.hash) { window.scrollTo(0,0); }
+  if (!location.hash) window.scrollTo(0,0);
 } catch(_) {}
 
 /* === QUIZ === */
@@ -256,17 +249,12 @@ function renderQ(){
   </div>
   ${step>0?'<button type="button" class="btn btn-outline" style="margin-top:10px" onclick="back()">Indietro</button>':''}`;
 }
-
 function pick(key, idx, el){
-  const group = el?.parentElement?.querySelectorAll('.btn-choice') || [];
-  group.forEach(b=>b.classList.remove('selected'));
-  answers[key]=idx;
-  if(el) el.classList.add('selected');
-  setTimeout(()=>{ step++; (step<questions.length)?renderQ():showResult(); }, 120);
+  (el?.parentElement?.querySelectorAll('.btn-choice')||[]).forEach(b=>b.classList.remove('selected'));
+  answers[key]=idx; el?.classList.add('selected');
+  setTimeout(()=>{ step++; step<questions.length ? renderQ() : showResult(); }, 120);
 }
-
 function back(){ step=Math.max(0,step-1); renderQ(); }
-
 function showResult(){
   if(pbar) pbar.style.width='100%';
   document.getElementById('result').style.display='grid';
@@ -288,30 +276,23 @@ function showResult(){
 renderQ();
 
 /* invio form -> Formspree, poi Calendly */
-const leadForm = document.getElementById('leadForm');
-leadForm?.addEventListener('submit', async (e)=>{
+document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
   e.preventDefault();
-
-  // aggiorno Reply-To hidden
-  const emailEl = document.getElementById('emailField');
-  const replyTo = document.getElementById('replytoHidden');
-  if (emailEl && replyTo) replyTo.value = emailEl.value || '';
-
-  const data = Object.fromEntries(new FormData(leadForm).entries());
-  const payload = {...data, ...answers, source:"nemo-landing-quiz"};
+  const data=Object.fromEntries(new FormData(e.target).entries());
+  const payload={...data,...answers,source:"nemo-landing-quiz"};
 
   try{
-    const res = await fetch(FORM_ENDPOINT,{
+    const res = await fetch(FORMSPREE,{
       method:"POST",
-      headers:{ "Content-Type":"application/json", "Accept":"application/json" },
-      body:JSON.stringify(payload),
-      mode:"cors"
+      headers:{"Content-Type":"application/json","Accept":"application/json"},
+      body:JSON.stringify(payload)
     });
-    // (opzionale) puoi controllare res.ok/res.status
-  }catch(_){ /* ignora errori di rete per non bloccare il redirect */ }
-
-  // redirect al calendario
-  window.location.href = CALENDLY;
+    // opzionale: puoi controllare res.ok per messaggio di successo/errore
+  }catch(err){
+    // silenzioso: anche se offline, mando comunque al Calendly
+  }finally{
+    window.location.href = CALENDLY;
+  }
 });
 
 document.getElementById('year').textContent=new Date().getFullYear();
