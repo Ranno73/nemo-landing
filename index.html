@@ -5,28 +5,29 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nemo Group · Landing Quiz (Agosto → Settembre)</title>
 
-  <!-- SEO base -->
-  <meta name="description" content="Trasforma agosto in vantaggio competitivo: contenuti, landing che convertono e anagrafiche qualificate per ripartire a settembre.">
+  <!-- SEO / Social Preview -->
   <link rel="canonical" href="https://www.franchisingitalia.com/" />
+  <meta name="description" content="Trasforma agosto in un vantaggio competitivo: contenuti che presidiano Google, landing che convertono e anagrafiche qualificate per settembre." />
+  <meta name="robots" content="index,follow" />
 
-  <!-- Open Graph / Facebook / LinkedIn -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nemo Group" />
   <meta property="og:url" content="https://www.franchisingitalia.com/" />
-  <meta property="og:title" content="Rilassati... al resto pensiamo noi!" />
+  <meta property="og:title" content="Rilassati… al resto pensiamo noi!" />
   <meta property="og:description" content="Scopri come trasformare agosto in un vantaggio competitivo." />
-  <meta property="og:image" content="https://www.franchisingitalia.com/hero-summer.png" />
-  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image" content="https://www.franchisingitalia.com/hero.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Donna in spiaggia che si rilassa mentre guarda il telefono, mood estivo." />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://www.franchisingitalia.com/" />
-  <meta name="twitter:title" content="Rilassati... al resto pensiamo noi!" />
+  <meta name="twitter:title" content="Rilassati… al resto pensiamo noi!" />
   <meta name="twitter:description" content="Scopri come trasformare agosto in un vantaggio competitivo." />
-  <meta name="twitter:image" content="https://www.franchisingitalia.com/hero-summer.png" />
+  <meta name="twitter:image" content="https://www.franchisingitalia.com/hero.jpg" />
 
-  <!-- favicon + preload (percorsi RELATIVI per GitHub Pages) -->
+  <!-- favicon + preload (percorsi RELATIVI per GitHub Pages/Vercel statico) -->
   <link rel="icon" href="public/nemo-logo.png" />
   <link rel="preload" as="image" href="public/hero-summer.jpg" />
 
@@ -303,16 +304,16 @@ document.getElementById('leadForm')?.addEventListener('submit', async (e)=>{
   const payload={...data,...answers,source:"nemo-landing-quiz"};
 
   try{
-    const res = await fetch(FORMSPREE,{
+    const res = await fetch("https://formspree.io/f/xqalnneb",{
       method:"POST",
       headers:{"Content-Type":"application/json","Accept":"application/json"},
       body:JSON.stringify(payload)
     });
-    // volendo: if(!res.ok){...}
+    // se vuoi, qui puoi controllare res.ok e mostrare un messaggio
   }catch(err){
-    // anche se fallisce, continuo il flusso
+    // ignora errori e continua il redirect
   }finally{
-    window.location.href = CALENDLY;
+    window.location.href = "https://calendly.com/gianluca-ranno-nemofranchising/nemo-group-france";
   }
 });
 
